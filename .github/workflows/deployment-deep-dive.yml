@@ -1,20 +1,20 @@
 name: Deep dive on Events
 on: # list of Events that will trigger the Action
-  pull_request: # at every pull request will trigger the Actions
-    types:
-      - opened # when PR is opened will run
-    branches: # it will run only on these branches 👇
-      - main # main branch
-      - "dev-*" # dev-new | dev-this-new-branch
-      - "feat/**" # feat/new | feat/new/button/component
+  #pull_request: # at every pull request will trigger the Actions
+  #  types:
+  #    - opened # when PR is opened will run
+  #  branches: # it will run only on these branches 👇
+  #    - main # main branch
+  #    - "dev-*" # dev-new | dev-this-new-branch
+  #    - "feat/**" # feat/new | feat/new/button/component
   workflow_dispatch: # manually can we trigger the Actions
-  push: # at every push will trrigger the Actions
-    branches: # it will run only in these branches 👇
-      - main # main branch
-      - "dev-*" # dev-new | dev-this-new-branch
-      - "feat/**" # feat/new | feat/new/button/component
-    #paths-ignore:
-    #  - ".github/workflows/*" # will ignore every change made it in this path, so Action will not run, but only in every push action
+  #push: # at every push will trrigger the Actions
+  #  branches: # it will run only in these branches 👇
+  #    - main # main branch
+  #    - "dev-*" # dev-new | dev-this-new-branch
+  #    - "feat/**" # feat/new | feat/new/button/component
+  #  #paths-ignore:
+  #  #  - ".github/workflows/*" # will ignore every change made it in this path, so Action will not run, but only in every push action
 jobs:
   job_lint:
     runs-on: ubuntu-latest
