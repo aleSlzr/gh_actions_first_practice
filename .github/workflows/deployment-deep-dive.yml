@@ -1,0 +1,61 @@
+name: Deep dive on Events
+on: # list of Events that will trigger the Action
+  pull_request: # at every pull request will trigger the Actions
+    types:
+      - opened # when PR is opened will run
+    branches: # it will run only on these branches 👇
+      - main # main branch
+      - "dev-*" # dev-new | dev-this-new-branch
+      - "feat/**" # feat/new | feat/new/button/component
+  workflow_dispatch: # manually can we trigger the Actions
+  push: # at every push will trrigger the Actions
+    branches: # it will run only in these branches 👇
+      - main # main branch
+      - "dev-*" # dev-new | dev-this-new-branch
+      - "feat/**" # feat/new | feat/new/button/component
+    #paths-ignore:
+    #  - ".github/workflows/*" # will ignore every change made it in this path, so Action will not run, but only in every push action
+jobs:
+  job_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm ci
+      - name: Run linter tool
+        run: npm run lint
+  job_test:
+    needs: job_lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm ci
+      - name: Run test
+        run: npm run test
+  job_deploy:
+    needs: job_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project to deploy
+        run: npm run build
+      - name: Deploy
+        run: echo "Deploying code ..."
