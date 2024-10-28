@@ -1,4 +1,4 @@
-name: Deploy Project
+name: Output workflow
 on: [workflow_dispatch]
 jobs:
   information:
