@@ -35,11 +35,11 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
-      - name: Upload artifacts
+      - name: Upload artifacts # action to upload artifact into github
         uses: actions/upload-artifact@v4
         with:
-          name: dist-files
-          path: dist
+          name: dist-files # directory where all the data will be stored
+          path: dist # directory who will be uploaded
       #   path: | # use pipe to add more that one file paths
       #     dist
       #     package.json
