@@ -26,10 +26,11 @@ jobs:
       - name: Get code
         uses: actions/checkout@v4
       - name: Cache dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v4 # cache action
         with:
-          path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.npm # directory that we want to cache
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }} # validate if there is a change in that file
+          # it will re-load all the dependencies
       - name: Install dependencies
         run: npm ci
       - name: Run test
